@@ -40,6 +40,10 @@ an ephemeral object_id, but works well with ActiveRecord and the
 like). If the user object responds to :zendesk_organization, that will
 be used as the :organization for the call.
 
+Same goes for :zendesk_tags, you'll need a string such as:
+  "fine looking gentlemen,single"
+And it'll automatically be passed as :tags to Zendesk
+
 This method will generate and include the hash of the parameters for
 you if necessary. 
 
