@@ -100,6 +100,10 @@ describe Zendesk::RemoteAuth do
         @auth.zendesk_remote_auth_url(@user).should =~ /organization=org/
       end
       
+      it 'should pull tags from the user if available' do
+        @user.should_receive(:zendesk_tags).and_return('fine looking gentlemen,married')
+        @auth.zendesk_remote_auth_url(@user).should =~/tags=fine\+looking\+gentlemen%2Cmarried/
+      end
     end
   end
 end

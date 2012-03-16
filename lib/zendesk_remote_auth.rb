@@ -56,7 +56,8 @@ module Zendesk
       [[:email, :email],
        [:name, :name],
        [:external_id, :id],
-       [:organization, :zendesk_organization]].each do |param, field|
+       [:organization, :zendesk_organization],
+       [:tags, :zendesk_tags]].each do |param, field|
         params[param] = user.send(field) if user.respond_to?(field)
       end
       params
