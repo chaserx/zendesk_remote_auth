@@ -40,7 +40,7 @@ module Zendesk
     # respond_to? at least :email and :name. The :id of the user
     # object will be used as the :external_id, and if the user
     # responds to :zendesk_organization, that will be used as the
-    # :organization. 
+    # :organization.
     def zendesk_remote_auth_url(user_or_params)
       params = user_or_params.is_a?(Hash) ? user_or_params : user_to_params(user_or_params)
       validate_params(params)
@@ -68,17 +68,19 @@ module Zendesk
         raise ArgumentError.new("Required parameter :#{param} not given") unless params[param]
       end
     end
-    
+
     def generate_hash(token, params)
-      str_to_hash = params[:name].clone
-      str_to_hash << params[:email]
-      str_to_hash << params[:external_id].to_s if params[:external_id]
-      str_to_hash << params[:organization].to_s if params[:organization]
-      str_to_hash << params[:tags].to_s if params[:tags]
-      str_to_hash << params[:remote_photo_url].to_s if params[:remote_photo_url]
-      str_to_hash << token
-      str_to_hash << params[:timestamp].to_s
-      Digest::MD5.hexdigest(str_to_hash)
+      parts = []
+      parts << params[:name]
+      parts << params[:email]
+      parts << params[:external_id]
+      parts << params[:organization]
+      parts << params[:tags]
+      parts << params[:remote_photo_url]
+      parts << token
+      parts << params[:timestamp]
+      input = parts.join('|')
+      Digest::MD5.hexdigest(input)
     end
 
   end
