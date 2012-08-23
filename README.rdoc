@@ -1,9 +1,9 @@
 = zendesk_remote_auth
 
-16/02/2012 Viewbook took over this gem from Tobias Crawley, this is now the official repo for this gem. 
+16/02/2012 Viewbook took over this gem from Tobias Crawley, this is now the official repo for this gem.
 
 zendesk_remote_auth is a simple gem providing help with Zendesk's SSO
-functionality (see http://www.zendesk.com/api/remote_authentication).
+functionality (see http://www.zendesk.com/support/api/remote-authentication).
 
 == Installation and Setup
 
@@ -21,7 +21,7 @@ and config the gem in environment.rb (if using rails):
 
 == Usage
 
-Note: The latest release requires ActiveSupport 3.0 or greater. 
+Note: The latest release requires ActiveSupport 3.0 or greater.
 
 Mixin the Zendesk::RemoteAuthHelper module wherever needed, then call:
   zendesk_remote_auth_url(:name => 'user name',
@@ -29,7 +29,7 @@ Mixin the Zendesk::RemoteAuthHelper module wherever needed, then call:
                           <optional params>)
 
 This will return a url you can redirect the user to to log them in to
-your zendesk account. 
+your zendesk account.
 
 As a convenience, you can pass a user object to zendesk_remote_auth_url:
   zendesk_remote_auth_url(user)
@@ -45,15 +45,15 @@ Same goes for :zendesk_tags, you'll need a string such as:
 And it'll automatically be passed as :tags to Zendesk
 
 This method will generate and include the hash of the parameters for
-you if necessary. 
+you if necessary.
 
 == Example Auth Controller
 
 Here is an example controller that handles login and logout for
 zendesk:
 
-  # Uses restful-authentication style auth. 
-  # 
+  # Uses restful-authentication style auth.
+  #
   # Define the following in routes.rb:
   # map.with_options :controller => 'zendesk_auth' do |zd|
   #   zd.connect '/zendesk/authorize', :action => 'authorize'
@@ -61,9 +61,9 @@ zendesk:
   # end
   class ZendeskAuthController < ApplicationController
     include Zendesk::RemoteAuthHelper
-  
+
     skip_before_filter :login_required, :only => :logout
-  
+
     def authorize
       redirect_to zendesk_remote_auth_url(current_user)
     end
@@ -84,7 +84,7 @@ zendesk:
 
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a future version unintentionally.
