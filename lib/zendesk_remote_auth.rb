@@ -45,7 +45,7 @@ module Zendesk
       params = user_or_params.is_a?(Hash) ? user_or_params : user_to_params(user_or_params)
       validate_params(params)
       params[:timestamp] = Time.now.utc.to_i unless params[:timestamp]
-      params[:hash] = params[:external_id] ? generate_hash(Zendesk::RemoteAuth.token, params) : ''
+      params[:hash] = generate_hash(Zendesk::RemoteAuth.token, params)
 
       "#{Zendesk::RemoteAuth.auth_url}?#{params.to_query}"
     end
