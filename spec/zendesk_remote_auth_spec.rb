@@ -61,12 +61,8 @@ describe Zendesk::RemoteAuth do
       @auth.zendesk_remote_auth_url(@valid_params)
     end
 
-    it 'should have an empty hash param if external_id not provided' do
-      @auth.zendesk_remote_auth_url(@valid_params).should =~ /hash=(&|$)/
-    end
-
-    it 'should have a hash param if external_id provided' do
-      @auth.zendesk_remote_auth_url(@valid_params.merge(:external_id => 'id')).should_not =~ /hash=(&|$)/
+    it 'should have a hash param' do
+      @auth.zendesk_remote_auth_url(@valid_params).should_not =~ /hash=(&|$)/
     end
 
     it 'should have a different hash param if external_id and remote_photo_url provided ' do
