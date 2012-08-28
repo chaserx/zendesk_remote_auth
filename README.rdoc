@@ -14,7 +14,7 @@ functionality (see http://www.zendesk.com/support/api/remote-authentication).
 You will need to give the gem your token and authentication url,
 perhaps in an initializer:
   Zendesk::RemoteAuth.token = 'YOUR-TOKEN'
-  Zendesk::RemoteAuth.auth_url = 'https://yourcompany.zendesk.com/access/remote/'
+  Zendesk::RemoteAuth.auth_url = 'https://domain.zendesk.com/access/remoteauth'
 
 and config the gem in environment.rb (if using rails):
   config.gem 'zendesk_remote_auth'
